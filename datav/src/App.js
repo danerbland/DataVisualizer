@@ -25,9 +25,17 @@ class App extends React.Component {
 
   onMouseUpListener(event){
     //TODO make a new array of random numbers
-    const arr = generateRandomArray(event.target.value)
+    let arrayLength = this.state.array.length
+    let newarr = []
+    if(arrayLength < event.target.value){
+      
+    const randomArr = generateRandomArray(event.target.value - arrayLength)
+    newarr = this.state.array.concat(randomArr)
+    } else {
+    newarr = this.state.array.slice(0, event.target.value)
+    }
     this.setState({
-      array: arr
+      array: newarr
     })
   }
 
