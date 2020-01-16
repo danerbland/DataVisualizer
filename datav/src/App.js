@@ -1,14 +1,24 @@
 import React from 'react';
-
 import './App.css';
 import GraphContainer from './components/GraphContainer'
 
-function App() {
+class App extends React.Component {
+  constructor(){
+    super()
+
+    this.state ={
+      array: [1,2,4]
+  }
+  }
+
+
+
+  render(){
   return (
     <div className="App">
-      <GraphContainer />
+      <GraphContainer graphArr={this.state.array} />
     </div>
   );
-}
+}}
 
 export default App;
