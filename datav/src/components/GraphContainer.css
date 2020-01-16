@@ -1,0 +1,12 @@
+.GraphContainerDiv{
+    display: flex;
+    flex-flow: row nowrap;
+    height: 75%;
+    width: 75%;
+    align-items: flex-end;
+
+}
+
+.Bar{
+    background-color: brown;
+}
