@@ -3,6 +3,8 @@ import './App.css';
 import GraphContainer from './components/GraphContainer'
 import NavBar from './components/NavBar'
 
+import finalMS from './algorithms/mergesort'
+
 class App extends React.Component {
   constructor(){
     super()
@@ -13,6 +15,8 @@ class App extends React.Component {
   }
   this.onChangeListener = this.onChangeListener.bind(this)
   this.onMouseUpListener = this.onMouseUpListener.bind(this)
+  this.updateArray = this.updateArray.bind(this)
+  //this.onSortHandler = this.onSortHandler.bind(this)
   }
 
   onChangeListener(event){
@@ -28,7 +32,7 @@ class App extends React.Component {
     let arrayLength = this.state.array.length
     let newarr = []
     if(arrayLength < event.target.value){
-      
+
     const randomArr = generateRandomArray(event.target.value - arrayLength)
     newarr = this.state.array.concat(randomArr)
     } else {
@@ -39,11 +43,31 @@ class App extends React.Component {
     })
   }
 
+  onSortHandler(){
+    console.log('in onSortHandler')
+    finalMS(this.state.array, this.updateArray)
+    // this.setState({
+    //   array: arr
+    // })
+  }
+
+  updateArray(arr){
+    let newArr = []
+    arr.forEach((element) => {
+      newArr.push(...element)
+    })
+    this.setState({
+      array: newArr
+    })
+    console.log(this.state)
+  }
+
   render(){
   return (
     <div className="App">
       <NavBar onChange={this.onChangeListener} onMouseUp = {this.onMouseUpListener} arrayLength={this.state.arrayLength}/>
       <GraphContainer graphArr={this.state.array} />
+      <button onClick={()=>this.onSortHandler()}>Sort</button>
     </div>
   );
 }}
